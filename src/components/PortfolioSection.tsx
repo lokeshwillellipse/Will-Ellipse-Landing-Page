@@ -24,9 +24,9 @@ const printingPortfolio: PortfolioItem[] = [
 ];
 
 const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) => (
-  <div className="group relative bg-gradient-to-br from-slate-400 via-slate-300 to-slate-500 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full min-h-[180px]">
-    {/* Metallic gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" />
+  <div className="group relative bg-slate-50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full min-h-[180px]">
+    {/* Metallic gradient overlay
+    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" /> */}
     
     {/* Content overlay on hover */}
     <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -38,14 +38,14 @@ const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) =>
 
 {/* CAD Portfolio - Layout 1: Two columns left (stacked), three items right */}
 const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]">
+  <div className="grid grid-cols- md:grid-cols-6 gap-4 auto-rows-[180px]">
     {/* Left column - two stacked items */}
-    <div className="md:col-span-1 md:row-span-2">
+    <div className="md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[0]} type="cad" />
     </div>
     
     {/* Middle - tall item */}
-    <div className="md:col-span-1 md:row-span-2">
+    <div className="md:col-span-2 md:row-span-2">
       <PortfolioCard item={items[1]} type="cad" />
     </div>
     
@@ -55,10 +55,10 @@ const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
     </div>
     
     {/* Bottom right - two items side by side */}
-    <div className="md:col-span-1 md:row-span-1">
+    <div className="md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[3]} type="cad" />
     </div>
-    <div className="md:col-span-1 md:row-span-1">
+    <div className="md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[4]} type="cad" />
     </div>
   </div>
