@@ -73,7 +73,7 @@ const Portfolio = () => {
                 className="group bg-card rounded-2xl overflow-hidden shadow-lg shadow-primary/5 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1"
               >
                 {/* Image Placeholder */}
-                <div className="aspect-[4/3]  from-primary/10 via-secondary to-primary/5 relative overflow-hidden">
+                <div className="aspect-[4/3] from-primary/10 via-secondary to-primary/5 relative overflow-hidden">
                   {/* Grid pattern */}
                   <div className="absolute inset-0 opacity-20">
                     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
