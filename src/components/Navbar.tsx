@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Plane, Users, Cpu, Printer, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const services = [
   },
   {
     title: "Enterprise Solutions",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     icon: Building2,
     href: "#contact",
     fullWidth: true,
@@ -38,6 +38,29 @@ const services = [
 
 const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const closeTimeout = useRef<number | null>(null);
+
+  const openServices = () => {
+    if (closeTimeout.current) {
+      window.clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+    setIsServicesOpen(true);
+  };
+
+  const scheduleCloseServices = () => {
+    if (closeTimeout.current) window.clearTimeout(closeTimeout.current);
+    closeTimeout.current = window.setTimeout(() => {
+      setIsServicesOpen(false);
+      closeTimeout.current = null;
+    }, 10);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeout.current) window.clearTimeout(closeTimeout.current);
+    };
+  }, []);
 
   return (
     <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
@@ -45,27 +68,34 @@ const Navbar = () => {
       <div className="bg-primary rounded-2xl px-8 py-4 shadow-2xl">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-cream text-3xl font-bold tracking-tight">W&</span>
+          <Link to="/" className="flex items-center" aria-label="Home">
+            {/* Logo file placed at src/assets/logo.svg - replace with your final SVG */}
+            <img src={new URL('../assets/logo.svg', import.meta.url).href} alt="Will & Ellipse" className="w-10 h-10 object-contain flex-shrink-0 mr-4" />
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-12">
-            <Link
-              to="/"
-              className="text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium"
-            >
-              Home
+          <div className="hidden md:flex items-center gap-8">
+            <Link to="/" className="group text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium">
+              <span className="relative inline-flex flex-col items-center">
+                <span>Home</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px] w-0 bg-cream transition-all duration-300 group-hover:w-full" />
+              </span>
             </Link>
             
             {/* Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
-            >
-              <button className="flex items-center gap-2 text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium">
-                Services
+            <div className="relative">
+              {/* Small invisible hover buffer under the Services button to bridge the gap only under the button */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 h-6 w-20 sm:w-28 rounded-md pointer-events-none" />
+
+              <button
+                onMouseEnter={() => openServices()}
+                onMouseLeave={() => scheduleCloseServices()}
+                className="flex items-center gap-2 text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium group"
+              >
+                <span className="relative inline-flex flex-col items-center">
+                  <span>Services</span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] w-0 bg-cream transition-all duration-300 group-hover:w-full" />
+                </span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ease-out ${
                     isServicesOpen ? "rotate-180" : ""
@@ -74,18 +104,20 @@ const Navbar = () => {
               </button>
 
               {/* Dropdown Menu */}
-              <div 
-                className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 w-screen max-w-xl transition-all duration-300 ${
+              <div
+                onMouseEnter={() => openServices()}
+                onMouseLeave={() => scheduleCloseServices()}
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-8 w-screen max-w-xl transition-all duration-300 ${
                   isServicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-primary rounded-2xl p-6 shadow-2xl border border-cream/10">
-                  <div className="grid grid-cols-2 gap-1">
+                <div className="bg-primary rounded-2xl p-4 shadow-2xl border border-cream/10">
+                  <div className="grid grid-cols-2 gap-2">
                     {services.slice(0, 4).map((service, index) => (
                       <a
                         key={service.title}
                         href={service.href}
-                        className="group flex items-start gap-3 p-4 rounded-xl hover:bg-cream/5 transition-all duration-300"
+                        className="group flex items-start gap-3 p-4 rounded-xl border border-transparent hover:bg-cream/5 hover:border-cream/20 transition-all duration-300 hover:shadow-sm hover:translate-y-[-2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/20"
                         style={{
                           animationDelay: `${index * 50}ms`,
                         }}
@@ -107,10 +139,10 @@ const Navbar = () => {
                   
                   {/* Enterprise Solution - Full Width */}
                   <div className="mt-2 pt-2 border-t border-cream/10">
-                    <a
-                      href="#contact"
-                      className="group flex items-start gap-3 p-4 rounded-xl hover:bg-cream/5 transition-all duration-300"
-                    >
+                      <a
+                        href="#contact"
+                        className="group flex items-start gap-3 p-4 rounded-xl border border-transparent hover:bg-cream/5 hover:border-cream/20 transition-all duration-300 hover:shadow-sm hover:translate-y-[-2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/20"
+                      >
                       <div className="p-2.5 rounded-lg bg-cream/10 group-hover:bg-cream/20 transition-all duration-300 flex-shrink-0">
                         <Building2 className="w-5 h-5 text-cream/70 group-hover:text-cream transition-colors" />
                       </div>
@@ -128,24 +160,24 @@ const Navbar = () => {
               </div>
             </div>
 
-            <a
-              href="#team"
-              className="text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium"
-            >
-              Team
-            </a>
-            <a
-              href="#contact"
-              className="text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium"
-            >
-              Contact
+            <Link to="#team" className="group text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium">
+              <span className="relative inline-flex flex-col items-center">
+                <span>Team</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px] w-0 bg-cream transition-all duration-300 group-hover:w-full" />
+              </span>
+            </Link>
+            <a href="#contact" className="group text-cream/80 hover:text-cream transition-colors duration-300 text-base font-medium">
+              <span className="relative inline-flex flex-col items-center">
+                <span>Contact</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px] w-0 bg-cream transition-all duration-300 group-hover:w-full" />
+              </span>
             </a>
           </div>
 
           {/* CTA Button */}
           <a
             href="#contact"
-            className="bg-cream text-primary px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-cream/90 transition-all duration-300 hover:shadow-lg hover:shadow-cream/20"
+            className="bg-cream text-primary px-6 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 hover:bg-cream/90 hover:text-slate-900"
           >
             Get a Quote
           </a>
