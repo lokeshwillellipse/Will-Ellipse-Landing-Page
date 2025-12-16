@@ -69,7 +69,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-2 sm:px-6 text-center">
+      <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 animate-fade-in-up" style={{ animationFillMode: "both", animationDelay: "0.2s" }}>

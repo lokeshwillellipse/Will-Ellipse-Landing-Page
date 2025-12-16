@@ -92,7 +92,7 @@ const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
 const PortfolioSection = () => {
   return (
     <section id="portfolio" className="py-16 sm:py-20 md:py-24 bg-cream">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         {/* CAD Design Portfolio */}
         <div className="mb-16 sm:mb-20 md:mb-24">
           <div className="flex items-center justify-between mb-6 sm:mb-8">
