@@ -14,6 +14,17 @@ export default function MouseFollower() {
       if (!mq.matches) return;
     }
 
+    let hoveredEl: Element | null = null;
+
+    const isInteractive = (el: Element | null) => {
+      if (!el) return false;
+      return (
+        (el instanceof HTMLElement && (el.closest('a,button,input,textarea,select,[role="button"]') !== null)) ||
+        el.tagName === 'A' ||
+        el.tagName === 'BUTTON'
+      );
+    };
+
     const handleMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
@@ -25,6 +36,19 @@ export default function MouseFollower() {
           dotRef.current.style.left = `${pos.current.x}px`;
           dotRef.current.style.top = `${pos.current.y}px`;
           dotRef.current.style.opacity = "1";
+        }
+      }
+
+      // detect interactive element under pointer and only enlarge (no color sampling)
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (el !== hoveredEl) {
+        hoveredEl = el;
+        if (isInteractive(el) && dotRef.current) {
+          dotRef.current.style.transition = 'transform 180ms cubic-bezier(.2,.9,.2,1)';
+          dotRef.current.style.transform = `translate(-50%,-50%) scale(1.9)`;
+        } else if (dotRef.current) {
+          dotRef.current.style.transition = 'transform 220ms cubic-bezier(.2,.9,.2,1)';
+          dotRef.current.style.transform = `translate(-50%,-50%) scale(1)`;
         }
       }
     };
@@ -41,6 +65,26 @@ export default function MouseFollower() {
     window.addEventListener("mousemove", handleMove);
     window.addEventListener("mouseleave", handleLeave);
     window.addEventListener("mouseenter", handleEnter);
+    const onFocusIn = (e: FocusEvent) => {
+      const target = e.target as Element | null;
+      if (isInteractive(target) && dotRef.current && target) {
+        hoveredEl = target;
+        dotRef.current.style.transition = 'transform 180ms cubic-bezier(.2,.9,.2,1)';
+        dotRef.current.style.transform = `translate(-50%,-50%) scale(1.9)`;
+        dotRef.current.style.opacity = '1';
+      }
+    };
+
+    const onFocusOut = () => {
+      hoveredEl = null;
+      if (dotRef.current) {
+        dotRef.current.style.transition = 'transform 220ms cubic-bezier(.2,.9,.2,1)';
+        dotRef.current.style.transform = `translate(-50%,-50%) scale(1)`;
+      }
+    };
+
+    window.addEventListener('focusin', onFocusIn);
+    window.addEventListener('focusout', onFocusOut);
 
     const ease = 0.15;
     const tick = () => {
@@ -60,6 +104,8 @@ export default function MouseFollower() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("mouseleave", handleLeave);
       window.removeEventListener("mouseenter", handleEnter);
+      window.removeEventListener('focusin', onFocusIn);
+      window.removeEventListener('focusout', onFocusOut);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
