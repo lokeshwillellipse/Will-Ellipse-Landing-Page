@@ -51,7 +51,7 @@ const ServicesSection = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-lg sm:text-xl font-bold text-primary mb-3 sm:mb-4">
+                  <h3 className="text-lg sm:text-xl font-semibold text-primary mb-3 sm:mb-4">
                     {service.title}
                   </h3>
                   <p className="text-primary/60 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">
