@@ -109,7 +109,6 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
-
       <Footer />
     </main>
   );

@@ -154,7 +154,6 @@ const PortfolioSection = () => {
           </Link>
         </div>
       </div>
-      checkbox
     </section>
   );
 };
