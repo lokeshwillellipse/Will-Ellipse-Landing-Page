@@ -114,8 +114,65 @@ export default function MouseFollower() {
     <div
       ref={dotRef}
       aria-hidden
-      className="pointer-events-none fixed z-[9999] w-4 h-4 rounded-full bg-primary/90 shadow-md transition-opacity duration-200 transform -translate-x-1/2 -translate-y-1/2"
+      className="pointer-events-none fixed z-[9999] w-8 h-8 text-primary transition-transform duration-200 transform -translate-x-1/2 -translate-y-1/2"
       style={{ left: 0, top: 0, opacity: 0 }}
-    />
+    >
+      {/* Drone SVG - clearer top-down quadcopter silhouette */}
+      <svg viewBox="0 0 48 48" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <style>{`
+          .mf-prop { transform-box: fill-box; transform-origin: center; animation: mf-spin 800ms linear infinite; }
+          @keyframes mf-spin { to { transform: rotate(360deg); } }
+        `}</style>
+        <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          {/* thick arms */}
+          <path d="M24 24 L8 12" strokeWidth="3.2" />
+          <path d="M24 24 L40 12" strokeWidth="3.2" />
+          <path d="M24 24 L8 36" strokeWidth="3.2" />
+          <path d="M24 24 L40 36" strokeWidth="3.2" />
+
+          {/* rotor housings: ring + rotating blades */}
+          <g className="mf-prop" style={{ animationDelay: '0ms' }}>
+            <circle cx="8" cy="12" r="4.2" fill="white" stroke="currentColor" />
+            <g fill="currentColor">
+              <path d="M8 9.6c1.2 0 2 1.2 2 1.2s-0.8 1.2-2 1.2-2-1.2-2-1.2 0.8-1.2 2-1.2z" />
+              <path d="M8 14.4c1.2 0 2-1.2 2-1.2s-0.8-1.2-2-1.2-2 1.2-2 1.2 0.8 1.2 2 1.2z" transform="rotate(60 8 12)" />
+            </g>
+          </g>
+
+          <g className="mf-prop" style={{ animationDelay: '100ms' }}>
+            <circle cx="40" cy="12" r="4.2" fill="white" stroke="currentColor" />
+            <g fill="currentColor">
+              <path d="M40 9.6c1.2 0 2 1.2 2 1.2s-0.8 1.2-2 1.2-2-1.2-2-1.2 0.8-1.2 2-1.2z" />
+              <path d="M40 14.4c1.2 0 2-1.2 2-1.2s-0.8-1.2-2-1.2-2 1.2-2 1.2 0.8 1.2 2 1.2z" transform="rotate(60 40 12)" />
+            </g>
+          </g>
+
+          <g className="mf-prop" style={{ animationDelay: '50ms' }}>
+            <circle cx="8" cy="36" r="4.2" fill="white" stroke="currentColor" />
+            <g fill="currentColor">
+              <path d="M8 33.6c1.2 0 2 1.2 2 1.2s-0.8 1.2-2 1.2-2-1.2-2-1.2 0.8-1.2 2-1.2z" />
+              <path d="M8 38.4c1.2 0 2-1.2 2-1.2s-0.8-1.2-2-1.2-2 1.2-2 1.2 0.8 1.2 2 1.2z" transform="rotate(60 8 36)" />
+            </g>
+          </g>
+
+          <g className="mf-prop" style={{ animationDelay: '150ms' }}>
+            <circle cx="40" cy="36" r="4.2" fill="white" stroke="currentColor" />
+            <g fill="currentColor">
+              <path d="M40 33.6c1.2 0 2 1.2 2 1.2s-0.8 1.2-2 1.2-2-1.2-2-1.2 0.8-1.2 2-1.2z" />
+              <path d="M40 38.4c1.2 0 2-1.2 2-1.2s-0.8-1.2-2-1.2-2 1.2-2 1.2 0.8 1.2 2 1.2z" transform="rotate(60 40 36)" />
+            </g>
+          </g>
+
+          {/* central fuselage */}
+          <rect x="18" y="18" width="12" height="12" rx="3" fill="currentColor" stroke="none" />
+          {/* camera / gimbal */}
+          <circle cx="24" cy="24" r="2" fill="#fff" />
+          <circle cx="24" cy="24" r="0.9" fill="#0f172a" />
+          {/* small landing skids */}
+          <path d="M19 31 L17 34" strokeWidth="1.4" />
+          <path d="M29 31 L31 34" strokeWidth="1.4" />
+        </g>
+      </svg>
+    </div>
   );
 }

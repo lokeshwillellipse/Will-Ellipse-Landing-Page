@@ -110,6 +110,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* (Gradient removed from here — now applied on Services section to favor the services side) */}
     </section>
   );
 };
