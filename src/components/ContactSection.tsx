@@ -29,7 +29,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4 italic">
             Let's Build Together
           </h2>
           <p className="text-primary/60 text-base sm:text-lg">
@@ -111,8 +111,8 @@ const ContactSection = () => {
           {/* Right Side - Info Cards */}
           <div className="space-y-4 sm:space-y-5 md:space-y-6">
             {/* CTA Card */}
-            <div className=" border border-solid border-primary/10 bg-secondary rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg shadow-primary/5">
-              <h3 className="text-xl sm:text-xl font-semibold text-primary mb-3 sm:mb-4">
+            <div className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg shadow-primary/5">
+              <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
                 Have a build in mind? Let us know
               </h3>
               <p className="text-primary/60 text-sm sm:text-base">
@@ -138,7 +138,7 @@ const ContactSection = () => {
                     <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
                       Email
                     </span>
-                    <span className="text-primary font-normal text-sm sm:text-base">
+                    <span className="text-primary font-medium text-sm sm:text-base">
                       office@willellipse.com
                     </span>
                   </div>
@@ -155,21 +155,21 @@ const ContactSection = () => {
                     <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
                       Phone
                     </span>
-                    <span className="text-primary font-normal text-sm sm:text-base">
+                    <span className="text-primary font-medium text-sm sm:text-base">
                       +91 9384181281
                     </span>
                   </div>
                 </a>
 
-                <a className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors flex-shrink-0">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
                   </div>
                   <div>
                     <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
                       Address
                     </span>
-                    <span className="text-primary font-normal leading-relaxed text-sm sm:text-base">
+                    <span className="text-primary font-medium leading-relaxed text-sm sm:text-base">
                       1207, Block - A Gopalan Olympia,
                       <br />
                       Kumbalgodu, Kengeri,
@@ -177,7 +177,7 @@ const ContactSection = () => {
                       Bangalore - 560074
                     </span>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -187,4 +187,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection;
+export default ContactSection
