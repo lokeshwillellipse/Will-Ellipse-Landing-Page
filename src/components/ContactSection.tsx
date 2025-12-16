@@ -25,26 +25,26 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 bg-cream">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="contact" className="py-24 bg-cream">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4 italic">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 italic">
             Let's Build Together
           </h2>
-          <p className="text-primary/60 text-base sm:text-lg">
+          <p className="text-primary/60 text-lg">
             Ready to bring your vision to life? Get in touch with our team
           </p>
         </div>
 
         {/* Content Grid */}
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg shadow-primary/5">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div className="bg-card rounded-3xl p-8 shadow-lg shadow-primary/5">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-primary mb-1.5 sm:mb-2">
+                  <label className="block text-sm font-medium text-primary mb-2">
                     Name
                   </label>
                   <input
@@ -53,11 +53,11 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your Name"
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                    className="w-full px-4 py-3 rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-primary mb-1.5 sm:mb-2">
+                  <label className="block text-sm font-medium text-primary mb-2">
                     Phone
                   </label>
                   <input
@@ -66,13 +66,13 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 XXXXXXXXXX"
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                    className="w-full px-4 py-3 rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-primary mb-1.5 sm:mb-2">
+                <label className="block text-sm font-medium text-primary mb-2">
                   Email
                 </label>
                 <input
@@ -81,12 +81,12 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your@gmail.com"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-primary mb-1.5 sm:mb-2">
+                <label className="block text-sm font-medium text-primary mb-2">
                   Message
                 </label>
                 <textarea
@@ -94,14 +94,14 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Leave us your message ..."
-                  rows={4}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none text-sm sm:text-base"
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-xl border border-primary/10 bg-transparent text-primary placeholder:text-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-primary text-cream py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 text-sm sm:text-base"
+                className="w-full bg-primary text-cream py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
               >
                 Send Message
               </button>
@@ -109,36 +109,36 @@ const ContactSection = () => {
           </div>
 
           {/* Right Side - Info Cards */}
-          <div className="space-y-4 sm:space-y-5 md:space-y-6">
+          <div className="space-y-6">
             {/* CTA Card */}
-            <div className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg shadow-primary/5">
-              <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
+            <div className="bg-card rounded-3xl p-8 shadow-lg shadow-primary/5">
+              <h3 className="text-2xl font-bold text-primary mb-4">
                 Have a build in mind? Let us know
               </h3>
-              <p className="text-primary/60 text-sm sm:text-base">
+              <p className="text-primary/60">
                 Join the future of Drone Technology. Our team is ready to
                 transform your ideas into reality.
               </p>
             </div>
 
             {/* Contact Info Card */}
-            <div className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg shadow-primary/5">
-              <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 sm:mb-6">
+            <div className="bg-card rounded-3xl p-8 shadow-lg shadow-primary/5">
+              <h3 className="text-xl font-bold text-primary mb-6">
                 Get in Touch
               </h3>
-              <div className="space-y-4 sm:space-y-5 md:space-y-6">
+              <div className="space-y-6">
                 <a
                   href="mailto:office@willellipse.com"
-                  className="flex items-start gap-3 sm:gap-4 group"
+                  className="flex items-start gap-4 group"
                 >
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors flex-shrink-0">
-                    <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                  <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
+                    <span className="block text-sm text-primary/60 mb-1">
                       Email
                     </span>
-                    <span className="text-primary font-medium text-sm sm:text-base">
+                    <span className="text-primary font-medium">
                       office@willellipse.com
                     </span>
                   </div>
@@ -146,30 +146,30 @@ const ContactSection = () => {
 
                 <a
                   href="tel:+919384181281"
-                  className="flex items-start gap-3 sm:gap-4 group"
+                  className="flex items-start gap-4 group"
                 >
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors flex-shrink-0">
-                    <Phone className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                  <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
+                    <span className="block text-sm text-primary/60 mb-1">
                       Phone
                     </span>
-                    <span className="text-primary font-medium text-sm sm:text-base">
+                    <span className="text-primary font-medium">
                       +91 9384181281
                     </span>
                   </div>
                 </a>
 
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <span className="block text-xs sm:text-sm text-primary/60 mb-0.5 sm:mb-1">
+                    <span className="block text-sm text-primary/60 mb-1">
                       Address
                     </span>
-                    <span className="text-primary font-medium leading-relaxed text-sm sm:text-base">
+                    <span className="text-primary font-medium leading-relaxed">
                       1207, Block - A Gopalan Olympia,
                       <br />
                       Kumbalgodu, Kengeri,
