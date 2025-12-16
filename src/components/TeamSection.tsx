@@ -17,7 +17,7 @@ const TeamSection = () => {
         </span>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-0">
+      <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 pt-12 sm:pt-16 md:pt-20 pb-0">
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4">
@@ -63,7 +63,7 @@ const TeamSection = () => {
 
       {/* Names Bar */}
       <div className="bg-primary py-4 sm:py-5 md:py-6">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4 text-center">
             {teamMembers.map((member) => (
               <div key={member.name} className="group">
