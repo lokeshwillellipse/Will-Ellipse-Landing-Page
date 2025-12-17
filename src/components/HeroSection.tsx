@@ -96,14 +96,14 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationFillMode: "both", animationDelay: "1s" }}>
             <a
               href="#services"
-              className="group bg-primary text-cream px-8 py-4 rounded-xl text-base font-semibold hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex items-center gap-2"
+              className="group bg-primary text-cream px-8 py-4 rounded-xl text-base font-semibold hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex items-center gap-2 justify-center w-full sm:w-auto text-center"
             >
               Explore Our Services
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
-              className="px-8 py-4 rounded-xl text-base font-semibold text-primary border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+              className="px-8 py-4 rounded-xl text-base font-semibold text-primary border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 w-full sm:w-auto text-center"
             >
               Get in Touch
             </a>
