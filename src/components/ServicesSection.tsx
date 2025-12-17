@@ -51,29 +51,29 @@ const ServicesSection = () => {
               {services.map((service, i) => (
                 <div
                   key={service.title}
-                  className="group p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col items-center text-center transition-all duration-300 hover:bg-secondary/30 animate-fade-in-up"
+                  className="group p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col items-start sm:items-center text-left sm:text-center transition-all duration-300 hover:bg-secondary/30 animate-fade-in-up"
                   style={{ animationFillMode: "both", animationDelay: `${0.15 + i * 0.08}s` }}
                 >
                   {/* Icon */}
-                  <div className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-secondary rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-primary/70" />
+                  <div className="w-14 sm:w-16 md:w-18 lg:w-20 h-14 sm:h-16 md:h-18 lg:h-20 bg-secondary rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 sm:w-8 md:w-9 lg:w-10 h-7 sm:h-8 md:h-9 lg:h-10 text-primary/70" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-primary mb-2 sm:mb-3 md:mb-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-3 sm:mb-4 md:mb-5">
                     {service.title}
                   </h3>
-                  <p className="text-primary/60 leading-relaxed mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm">
+                  <p className="text-primary/60 leading-relaxed mb-5 sm:mb-6 md:mb-8 text-sm sm:text-base max-w-xs">
                     {service.description}
                   </p>
 
                   {/* Link */}
                   <a
                     href={service.href}
-                    className="inline-flex items-center gap-2 text-primary font-semibold text-xs sm:text-sm group/link mt-auto"
+                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm sm:text-base group/link mt-auto"
                   >
                     Explore
-                    <ArrowRight className="w-3 sm:w-4 h-3 sm:h-4 group-hover/link:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
               ))}
