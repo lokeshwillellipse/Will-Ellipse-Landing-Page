@@ -38,27 +38,27 @@ const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) =>
 
 // CAD Portfolio - Layout 1: Two columns left (stacked), three items right
 const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
-  <div className="grid grid-cols- md:grid-cols-6 gap-4 auto-rows-[180px]">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-3 sm:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
     {/* Left column - two stacked items */}
-    <div className="md:col-span-2 md:row-span-1">
+    <div className="sm:col-span-1 md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[0]} type="cad" />
     </div>
     
     {/* Middle - tall item */}
-    <div className="md:col-span-2 md:row-span-2">
+    <div className="sm:col-span-1 md:col-span-2 md:row-span-2">
       <PortfolioCard item={items[1]} type="cad" />
     </div>
     
     {/* Right side - wide item on top */}
-    <div className="md:col-span-2 md:row-span-1">
+    <div className="sm:col-span-1 md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[2]} type="cad" />
     </div>
     
     {/* Bottom right - two items side by side */}
-    <div className="md:col-span-2 md:row-span-1">
+    <div className="sm:col-span-1 md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[3]} type="cad" />
     </div>
-    <div className="md:col-span-2 md:row-span-1">
+    <div className="sm:col-span-2 md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[4]} type="cad" />
     </div>
   </div>
@@ -66,27 +66,27 @@ const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
 
 // 3D Printing Portfolio - Layout 2: Different arrangement
 const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
     {/* Top left - wide item */}
-    <div className="md:col-span-2 md:row-span-1">
+    <div className="sm:col-span-2 md:col-span-2 md:row-span-1">
       <PortfolioCard item={items[0]} type="printing" />
     </div>
     
     {/* Top right - tall item */}
-    <div className="md:col-span-1 md:row-span-2">
+    <div className="sm:col-span-1 md:col-span-1 md:row-span-2">
       <PortfolioCard item={items[1]} type="printing" />
     </div>
     
     {/* Far right - tall item */}
-    <div className="md:col-span-1 md:row-span-2">
+    <div className="sm:col-span-1 md:col-span-1 md:row-span-2">
       <PortfolioCard item={items[2]} type="printing" />
     </div>
     
     {/* Bottom left - two items */}
-    <div className="md:col-span-1 md:row-span-1">
+    <div className="sm:col-span-1 md:col-span-1 md:row-span-1">
       <PortfolioCard item={items[3]} type="printing" />
     </div>
-    <div className="md:col-span-1 md:row-span-1">
+    <div className="sm:col-span-1 md:col-span-1 md:row-span-1">
       <PortfolioCard item={items[4]} type="printing" />
     </div>
   </div>
@@ -94,24 +94,24 @@ const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
 
 const PortfolioSection = () => {
   return (
-    <section id="portfolio" className="relative py-24 bg-cream">
+    <section id="portfolio" className="relative py-16 sm:py-20 md:py-24 bg-cream">
       {/* Subtle gradient at bottom of Portfolio to hint the next section */}
       <div
-        className="pointer-events-none absolute left-0 right-0 bottom-0 h-36 md:h-56"
+        className="pointer-events-none absolute left-0 right-0 bottom-0 h-24 sm:h-36 md:h-56"
         style={{
           background: `linear-gradient(0deg, hsl(var(--secondary)) 0%, hsla(var(--secondary) / 0) 100%)`,
         }}
       />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* CAD Design Portfolio */}
-        <div className="mb-24">
-          <div className="flex items-center justify-between mb-8">
+        <div className="mb-16 sm:mb-20 md:mb-24">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
             <div>
-              <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
+              <span className="text-primary/50 text-xs sm:text-sm font-medium uppercase tracking-wider mb-1 sm:mb-2 block">
                 Our Work
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
                 CAD Design Portfolio
               </h2>
             </div>
@@ -126,21 +126,21 @@ const PortfolioSection = () => {
           <CADPortfolioGrid items={cadPortfolio} />
           <Link
             to="/portfolio/cad"
-            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
+            className="md:hidden mt-6 sm:mt-8 inline-flex items-center gap-2 text-primary font-semibold text-sm"
           >
             View All
-            <ArrowUpRight className="w-5 h-5" />
+            <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </Link>
         </div>
 
         {/* 3D Printing Portfolio */}
         <div>
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
             <div>
-              <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
+              <span className="text-primary/50 text-xs sm:text-sm font-medium uppercase tracking-wider mb-1 sm:mb-2 block">
                 Manufactured Excellence
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
                 3D Printing Portfolio
               </h2>
             </div>
@@ -155,10 +155,10 @@ const PortfolioSection = () => {
           <PrintingPortfolioGrid items={printingPortfolio} />
           <Link
             to="/portfolio/printing"
-            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
+            className="md:hidden mt-6 sm:mt-8 inline-flex items-center gap-2 text-primary font-semibold text-sm"
           >
             View All
-            <ArrowUpRight className="w-5 h-5" />
+            <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </Link>
         </div>
       </div>
