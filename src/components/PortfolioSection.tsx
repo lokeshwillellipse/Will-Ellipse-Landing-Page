@@ -1,12 +1,5 @@
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import { useState, useCallback, useEffect } from "react";
-import type { CarouselApi } from "@/components/ui/carousel";
 
 interface PortfolioItem {
   id: number;
@@ -30,156 +23,136 @@ const printingPortfolio: PortfolioItem[] = [
   { id: 5, title: "Drone Components", category: "Aerospace" },
 ];
 
-const PortfolioCard = ({ item }: { item: PortfolioItem }) => (
-  <div className="group relative bg-slate-100 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-[200px] sm:h-[240px] md:h-[280px]">
+const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) => (
+  <div className="group relative bg-slate-50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full min-h-[180px]">
+    {/* Metallic gradient overlay
+    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" /> */}
+    
     {/* Content overlay on hover */}
-    <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <span className="text-cream/80 text-xs font-medium">{item.category}</span>
-      <h4 className="text-cream text-sm sm:text-base font-bold">{item.title}</h4>
+      <h4 className="text-cream text-base font-bold">{item.title}</h4>
     </div>
   </div>
 );
 
-const PortfolioCarousel = ({ 
-  items, 
-  title, 
-  subtitle, 
-  linkTo 
-}: { 
-  items: PortfolioItem[]; 
-  title: string; 
-  subtitle: string;
-  linkTo: string;
-}) => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(true);
-
-  const onSelect = useCallback(() => {
-    if (!api) return;
-    setCanScrollPrev(api.canScrollPrev());
-    setCanScrollNext(api.canScrollNext());
-  }, [api]);
-
-  useEffect(() => {
-    if (!api) return;
-    onSelect();
-    api.on("select", onSelect);
-    api.on("reInit", onSelect);
-    return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onSelect);
-    };
-  }, [api, onSelect]);
-
-  return (
-    <div className="mb-16 sm:mb-20 md:mb-24">
-      {/* Header with View All and Navigation */}
-      <div className="flex items-end justify-between mb-6 sm:mb-8">
-        <div>
-          <span className="text-primary/50 text-xs sm:text-sm font-medium uppercase tracking-wider mb-1 sm:mb-2 block">
-            {subtitle}
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
-            {title}
-          </h2>
-        </div>
-        
-        <div className="flex items-center gap-3 sm:gap-4">
-          <Link
-            to={linkTo}
-            className="inline-flex items-center gap-1.5 sm:gap-2 text-primary font-semibold hover:gap-2 sm:hover:gap-3 transition-all text-xs sm:text-sm"
-          >
-            View All
-            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-          </Link>
-          
-          {/* Navigation Arrows */}
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              onClick={() => api?.scrollPrev()}
-              disabled={!canScrollPrev}
-              className="p-2 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-cream disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
-              aria-label="Previous"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => api?.scrollNext()}
-              disabled={!canScrollNext}
-              className="p-2 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-cream disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
-              aria-label="Next"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Carousel */}
-      <Carousel
-        setApi={setApi}
-        opts={{
-          align: "start",
-          loop: false,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-3 sm:-ml-4">
-          {items.map((item) => (
-            <CarouselItem key={item.id} className="pl-3 sm:pl-4 basis-[75%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-              <PortfolioCard item={item} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-
-      {/* Mobile Navigation Dots */}
-      <div className="flex sm:hidden justify-center gap-2 mt-4">
-        {items.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => api?.scrollTo(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === (api?.selectedScrollSnap() ?? 0)
-                ? "bg-primary w-6"
-                : "bg-primary/30"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+{/* CAD Portfolio - Layout 1: Two columns left (stacked), three items right */}
+const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
+  <div className="grid grid-cols- md:grid-cols-6 gap-4 auto-rows-[180px]">
+    {/* Left column - two stacked items */}
+    <div className="md:col-span-2 md:row-span-1">
+      <PortfolioCard item={items[0]} type="cad" />
     </div>
-  );
-};
+    
+    {/* Middle - tall item */}
+    <div className="md:col-span-2 md:row-span-2">
+      <PortfolioCard item={items[1]} type="cad" />
+    </div>
+    
+    {/* Right side - wide item on top */}
+    <div className="md:col-span-2 md:row-span-1">
+      <PortfolioCard item={items[2]} type="cad" />
+    </div>
+    
+    {/* Bottom right - two items side by side */}
+    <div className="md:col-span-2 md:row-span-1">
+      <PortfolioCard item={items[3]} type="cad" />
+    </div>
+    <div className="md:col-span-2 md:row-span-1">
+      <PortfolioCard item={items[4]} type="cad" />
+    </div>
+  </div>
+);
+
+{/* 3D Printing Portfolio - Layout 2: Different arrangement */}
+const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]">
+    {/* Top left - wide item */}
+    <div className="md:col-span-2 md:row-span-1">
+      <PortfolioCard item={items[0]} type="printing" />
+    </div>
+    
+    {/* Top right - tall item */}
+    <div className="md:col-span-1 md:row-span-2">
+      <PortfolioCard item={items[1]} type="printing" />
+    </div>
+    
+    {/* Far right - tall item */}
+    <div className="md:col-span-1 md:row-span-2">
+      <PortfolioCard item={items[2]} type="printing" />
+    </div>
+    
+    {/* Bottom left - two items */}
+    <div className="md:col-span-1 md:row-span-1">
+      <PortfolioCard item={items[3]} type="printing" />
+    </div>
+    <div className="md:col-span-1 md:row-span-1">
+      <PortfolioCard item={items[4]} type="printing" />
+    </div>
+  </div>
+);
 
 const PortfolioSection = () => {
   return (
-    <section id="portfolio" className="relative py-16 sm:py-20 md:py-24 bg-cream">
-      {/* Subtle gradient at bottom of Portfolio to hint the next section */}
-      <div
-        className="pointer-events-none absolute left-0 right-0 bottom-0 h-24 sm:h-36 md:h-56"
-        style={{
-          background: `linear-gradient(0deg, hsl(var(--secondary)) 0%, hsla(var(--secondary) / 0) 100%)`,
-        }}
-      />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+    <section id="portfolio" className="py-24 bg-cream">
+      <div className="container mx-auto px-6">
         {/* CAD Design Portfolio */}
-        <PortfolioCarousel
-          items={cadPortfolio}
-          title="CAD Design Portfolio"
-          subtitle="Our Work"
-          linkTo="/portfolio/cad"
-        />
+        <div className="mb-24">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
+                Our Work
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+                CAD Design Portfolio
+              </h2>
+            </div>
+            <Link
+              to="/portfolio/cad"
+              className="hidden md:inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all text-sm"
+            >
+              View All
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <CADPortfolioGrid items={cadPortfolio} />
+          <Link
+            to="/portfolio/cad"
+            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
+          >
+            View All
+            <ArrowUpRight className="w-5 h-5" />
+          </Link>
+        </div>
 
         {/* 3D Printing Portfolio */}
-        <PortfolioCarousel
-          items={printingPortfolio}
-          title="3D Printing Portfolio"
-          subtitle="Manufactured Excellence"
-          linkTo="/portfolio/printing"
-        />
+        <div>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
+                Manufactured Excellence
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+                3D Printing Portfolio
+              </h2>
+            </div>
+            <Link
+              to="/portfolio/printing"
+              className="hidden md:inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all text-sm"
+            >
+              View All
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <PrintingPortfolioGrid items={printingPortfolio} />
+          <Link
+            to="/portfolio/printing"
+            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
+          >
+            View All
+            <ArrowUpRight className="w-5 h-5" />
+          </Link>
+        </div>
       </div>
     </section>
   );
