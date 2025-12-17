@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Plane, Users, Cpu, Printer, Building2 } from "lucide-react";
+import { ChevronDown, Plane, Users, Cpu, Printer, Building2, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -38,6 +38,7 @@ const services = [
 
 const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const closeTimeout = useRef<number | null>(null);
 
   const openServices = () => {
@@ -62,15 +63,16 @@ const Navbar = () => {
     };
   }, []);
 
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+    <nav className="fixed top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 z-50 w-[92%] sm:w-[95%] max-w-6xl">
       {/* Navbar */}
-      <div className="bg-primary rounded-2xl px-8 py-4 shadow-2xl">
+      <div className="bg-primary rounded-xl sm:rounded-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 shadow-2xl">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center" aria-label="Home">
-            {/* Logo file placed at src/assets/logo.svg - replace with your final SVG */}
-            <img src={new URL('../assets/logo.svg', import.meta.url).href} alt="Will & Ellipse" className="w-10 h-10 object-contain flex-shrink-0 mr-4" />
+            <img src={new URL('../assets/logo.svg', import.meta.url).href} alt="Will & Ellipse" className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0 mr-2 sm:mr-4" />
           </Link>
 
           {/* Navigation Links */}
@@ -174,10 +176,64 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button - Desktop */}
           <a
             href="#contact"
-            className="bg-cream text-primary px-6 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 hover:bg-cream/90 hover:text-slate-900"
+            className="hidden sm:block bg-cream text-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-200 hover:bg-cream/90 hover:text-slate-900"
+          >
+            Get a Quote
+          </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-cream"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden absolute top-full left-0 right-0 mt-2 bg-primary rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
+          isMobileMenuOpen ? "opacity-100 visible max-h-[80vh]" : "opacity-0 invisible max-h-0"
+        }`}
+      >
+        <div className="p-4 space-y-3">
+          <Link
+            to="/"
+            onClick={closeMobileMenu}
+            className="block text-cream/80 hover:text-cream py-2 text-base font-medium"
+          >
+            Home
+          </Link>
+          <a
+            href="#services"
+            onClick={closeMobileMenu}
+            className="block text-cream/80 hover:text-cream py-2 text-base font-medium"
+          >
+            Services
+          </a>
+          <a
+            href="#team"
+            onClick={closeMobileMenu}
+            className="block text-cream/80 hover:text-cream py-2 text-base font-medium"
+          >
+            Team
+          </a>
+          <a
+            href="#contact"
+            onClick={closeMobileMenu}
+            className="block text-cream/80 hover:text-cream py-2 text-base font-medium"
+          >
+            Contact
+          </a>
+          <a
+            href="#contact"
+            onClick={closeMobileMenu}
+            className="block bg-cream text-primary px-4 py-3 rounded-xl text-sm font-semibold text-center mt-4"
           >
             Get a Quote
           </a>
