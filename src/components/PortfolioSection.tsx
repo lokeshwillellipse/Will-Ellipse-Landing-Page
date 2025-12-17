@@ -36,7 +36,7 @@ const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) =>
   </div>
 );
 
-{/* CAD Portfolio - Layout 1: Two columns left (stacked), three items right */}
+// CAD Portfolio - Layout 1: Two columns left (stacked), three items right
 const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
   <div className="grid grid-cols- md:grid-cols-6 gap-4 auto-rows-[180px]">
     {/* Left column - two stacked items */}
@@ -64,7 +64,7 @@ const CADPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
   </div>
 );
 
-{/* 3D Printing Portfolio - Layout 2: Different arrangement */}
+// 3D Printing Portfolio - Layout 2: Different arrangement
 const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]">
     {/* Top left - wide item */}
@@ -94,8 +94,16 @@ const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
 
 const PortfolioSection = () => {
   return (
-    <section id="portfolio" className="py-24 bg-cream">
-      <div className="container mx-auto px-6">
+    <section id="portfolio" className="relative py-24 bg-cream">
+      {/* Subtle gradient at bottom of Portfolio to hint the next section */}
+      <div
+        className="pointer-events-none absolute left-0 right-0 bottom-0 h-36 md:h-56"
+        style={{
+          background: `linear-gradient(0deg, hsl(var(--secondary)) 0%, hsla(var(--secondary) / 0) 100%)`,
+        }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* CAD Design Portfolio */}
         <div className="mb-24">
           <div className="flex items-center justify-between mb-8">
