@@ -1,3 +1,5 @@
+import React from 'react';
+
 const teamMembers = [
   { name: "Johann", role: "Co-Founder" },
   { name: "Lokesh", role: "Co-Founder" },
@@ -9,7 +11,8 @@ const teamMembers = [
 
 const TeamSection = () => {
   return (
-    <section id="team" className="relative bg-secondary overflow-hidden">
+    <>
+      <section id="team" className="relative bg-secondary overflow-hidden">
       {/* Background Text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
         <span className="text-[20vw] font-bold text-primary/5 whitespace-nowrap">
@@ -77,6 +80,7 @@ const TeamSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

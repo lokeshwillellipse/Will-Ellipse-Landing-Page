@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 interface PortfolioItem {
   id: number;
@@ -93,17 +94,84 @@ const PrintingPortfolioGrid = ({ items }: { items: PortfolioItem[] }) => (
 );
 
 const PortfolioSection = () => {
+  const cadRef = useRef<HTMLDivElement | null>(null);
+  const printingRef = useRef<HTMLDivElement | null>(null);
+  const [cadIndex, setCadIndex] = useState(0);
+  const [printingIndex, setPrintingIndex] = useState(0);
+
+  useEffect(() => {
+    const el = cadRef.current;
+    if (!el) return;
+
+    const init = () => {
+      const child = el.querySelector('[data-card]') as HTMLElement | null;
+      const gap = 16;
+      const w = child ? child.clientWidth + gap : el.clientWidth;
+      // start at the first slide
+      el.scrollTo({ left: 0, behavior: 'auto' });
+      setCadIndex(0);
+    };
+
+    const onScroll = () => {
+      const child = el.querySelector('[data-card]') as HTMLElement | null;
+      const gap = 16; // matches gap-4
+      const w = child ? child.clientWidth + gap : el.clientWidth;
+      const idx = Math.round(el.scrollLeft / w);
+      const n = cadPortfolio.length;
+
+      setCadIndex(Math.min(Math.max(idx, 0), n - 1));
+    };
+
+    init();
+    el.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', init);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', init);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = printingRef.current;
+    if (!el) return;
+
+    const init = () => {
+      const child = el.querySelector('[data-card]') as HTMLElement | null;
+      const gap = 16;
+      const w = child ? child.clientWidth + gap : el.clientWidth;
+      el.scrollTo({ left: 0, behavior: 'auto' });
+      setPrintingIndex(0);
+    };
+
+    const onScroll = () => {
+      const child = el.querySelector('[data-card]') as HTMLElement | null;
+      const gap = 16;
+      const w = child ? child.clientWidth + gap : el.clientWidth;
+      const idx = Math.round(el.scrollLeft / w);
+      const n = printingPortfolio.length;
+
+      setPrintingIndex(Math.min(Math.max(idx, 0), n - 1));
+    };
+
+    init();
+    el.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', init);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', init);
+    };
+  }, []);
   return (
     <section id="portfolio" className="py-24 bg-cream">
       <div className="container mx-auto px-6">
         {/* CAD Design Portfolio */}
         <div className="mb-24">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-8 relative">
             <div>
               <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
                 Our Work
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary">
                 CAD Design Portfolio
               </h2>
             </div>
@@ -114,25 +182,104 @@ const PortfolioSection = () => {
               View All
               <ArrowUpRight className="w-4 h-4" />
             </Link>
+            {/* Mobile View All - inline on mobile */}
+            <Link to="/portfolio/cad" className="md:hidden inline-flex items-center gap-2 text-primary font-semibold text-sm mt-4">
+              View All
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
-          <CADPortfolioGrid items={cadPortfolio} />
-          <Link
-            to="/portfolio/cad"
-            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
-          >
-            View All
-            <ArrowUpRight className="w-5 h-5" />
-          </Link>
+          {/* Grid for md+ */}
+          <div className="hidden md:block">
+            <CADPortfolioGrid items={cadPortfolio} />
+          </div>
+
+          {/* Mobile carousel */}
+          <div className="md:hidden">
+            <div className="relative">
+              <div
+                ref={cadRef}
+                className="mt-4 flex gap-4 overflow-x-auto px-6 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+                role="list"
+              >
+                {cadPortfolio.map((item) => (
+                  <div key={item.id} data-card className="snap-center min-w-[85%]">
+                    <PortfolioCard item={item} type="cad" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Controls */}
+              <div className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden">
+                <button
+                  aria-label="Previous"
+                  onClick={() => {
+                    const el = cadRef.current;
+                    if (!el) return;
+                    const n = cadPortfolio.length;
+                    const child = el.querySelector('[data-card]') as HTMLElement | null;
+                    const gap = 16;
+                    const w = child ? child.clientWidth + gap : el.clientWidth;
+                    const idx = cadIndex;
+                    if (idx <= 0) return;
+                    el.scrollTo({ left: (idx - 1) * w, behavior: 'smooth' });
+                  }}
+                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
+                >
+                  ‹
+                </button>
+              </div>
+
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden">
+                <button
+                  aria-label="Next"
+                  onClick={() => {
+                    const el = cadRef.current;
+                    if (!el) return;
+                    const n = cadPortfolio.length;
+                    const child = el.querySelector('[data-card]') as HTMLElement | null;
+                    const gap = 16;
+                    const w = child ? child.clientWidth + gap : el.clientWidth;
+                    const idx = cadIndex;
+                    if (idx >= n - 1) return; // don't loop; user can tap View All
+                    el.scrollTo({ left: (idx + 1) * w, behavior: 'smooth' });
+                  }}
+                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
+                >
+                  ›
+                </button>
+              </div>
+
+                {/* Indicators */}
+              <div className="flex items-center justify-center gap-2 mt-3">
+                {cadPortfolio.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => {
+                      const el = cadRef.current;
+                      if (!el) return;
+                      const child = el.querySelector('[data-card]') as HTMLElement | null;
+                      const gap = 16;
+                      const w = child ? child.clientWidth + gap : el.clientWidth;
+                      el.scrollTo({ left: i * w, behavior: 'smooth' });
+                    }}
+                    className={`w-2 h-2 rounded-full ${cadIndex === i ? 'bg-primary' : 'bg-primary/30'}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* 3D Printing Portfolio */}
         <div>
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-8 relative">
             <div>
               <span className="text-primary/50 text-sm font-medium uppercase tracking-wider mb-2 block">
                 Manufactured Excellence
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary">
                 3D Printing Portfolio
               </h2>
             </div>
@@ -143,15 +290,87 @@ const PortfolioSection = () => {
               View All
               <ArrowUpRight className="w-4 h-4" />
             </Link>
+            <Link to="/portfolio/printing" className="md:hidden inline-flex items-center gap-2 text-primary font-semibold text-sm mt-4">
+              View All
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
-          <PrintingPortfolioGrid items={printingPortfolio} />
-          <Link
-            to="/portfolio/printing"
-            className="md:hidden mt-8 inline-flex items-center gap-2 text-primary font-semibold"
-          >
-            View All
-            <ArrowUpRight className="w-5 h-5" />
-          </Link>
+          <div className="hidden md:block">
+            <PrintingPortfolioGrid items={printingPortfolio} />
+          </div>
+
+          {/* Mobile carousel */}
+          <div className="md:hidden">
+            <div className="relative">
+              <div
+                ref={printingRef}
+                className="mt-4 flex gap-4 overflow-x-auto px-6 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+                role="list"
+              >
+                {printingPortfolio.map((item) => (
+                  <div key={item.id} data-card className="snap-center min-w-[85%]">
+                    <PortfolioCard item={item} type="printing" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden">
+                <button
+                  aria-label="Previous"
+                  onClick={() => {
+                    const el = printingRef.current;
+                    if (!el) return;
+                    const n = printingPortfolio.length;
+                    const child = el.querySelector('[data-card]') as HTMLElement | null;
+                    const gap = 16;
+                    const w = child ? child.clientWidth + gap : el.clientWidth;
+                    const idx = printingIndex;
+                    if (idx <= 0) return;
+                    el.scrollTo({ left: (idx - 1) * w, behavior: 'smooth' });
+                  }}
+                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
+                >
+                  ‹
+                </button>
+              </div>
+
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden">
+                <button
+                  aria-label="Next"
+                  onClick={() => {
+                    const el = printingRef.current;
+                    if (!el) return;
+                    const child = el.querySelector('[data-card]') as HTMLElement | null;
+                    const gap = 16;
+                    const w = child ? child.clientWidth + gap : el.clientWidth;
+                    el.scrollBy({ left: w, behavior: 'smooth' });
+                  }}
+                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
+                >
+                  ›
+                </button>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 mt-3">
+                {printingPortfolio.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => {
+                      const el = printingRef.current;
+                      if (!el) return;
+                      const child = el.querySelector('[data-card]') as HTMLElement | null;
+                      const gap = 16;
+                      const w = child ? child.clientWidth + gap : el.clientWidth;
+                      el.scrollTo({ left: i * w, behavior: 'smooth' });
+                    }}
+                    className={`w-2 h-2 rounded-full ${printingIndex === i ? 'bg-primary' : 'bg-primary/30'}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
