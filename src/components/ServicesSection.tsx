@@ -51,7 +51,7 @@ const ServicesSection = () => {
               {services.map((service, i) => (
                 <div
                   key={service.title}
-                  className="group p-8 md:p-10 flex flex-col items-center text-center transition-all duration-300 hover:bg-secondary/30 animate-fade-in-up"
+                  className="group p-8 md:p-10 flex flex-col items-start sm:items-center text-left sm:text-center transition-all duration-300 hover:bg-secondary/30 animate-fade-in-up"
                   style={{ animationFillMode: "both", animationDelay: `${0.15 + i * 0.08}s` }}
                 >
                   {/* Icon */}
