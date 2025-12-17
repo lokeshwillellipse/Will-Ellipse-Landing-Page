@@ -198,7 +198,7 @@ const PortfolioSection = () => {
             <div className="relative">
               <div
                 ref={cadRef}
-                className="mt-4 flex gap-4 overflow-x-auto px-6 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+                className="mt-4 flex gap-4 overflow-x-auto px-0 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
                 role="list"
               >
                 {cadPortfolio.map((item) => (
@@ -209,45 +209,7 @@ const PortfolioSection = () => {
               </div>
 
               {/* Controls */}
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden">
-                <button
-                  aria-label="Previous"
-                  onClick={() => {
-                    const el = cadRef.current;
-                    if (!el) return;
-                    const n = cadPortfolio.length;
-                    const child = el.querySelector('[data-card]') as HTMLElement | null;
-                    const gap = 16;
-                    const w = child ? child.clientWidth + gap : el.clientWidth;
-                    const idx = cadIndex;
-                    if (idx <= 0) return;
-                    el.scrollTo({ left: (idx - 1) * w, behavior: 'smooth' });
-                  }}
-                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
-                >
-                  ‹
-                </button>
-              </div>
 
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden">
-                <button
-                  aria-label="Next"
-                  onClick={() => {
-                    const el = cadRef.current;
-                    if (!el) return;
-                    const n = cadPortfolio.length;
-                    const child = el.querySelector('[data-card]') as HTMLElement | null;
-                    const gap = 16;
-                    const w = child ? child.clientWidth + gap : el.clientWidth;
-                    const idx = cadIndex;
-                    if (idx >= n - 1) return; // don't loop; user can tap View All
-                    el.scrollTo({ left: (idx + 1) * w, behavior: 'smooth' });
-                  }}
-                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
-                >
-                  ›
-                </button>
-              </div>
 
                 {/* Indicators */}
               <div className="flex items-center justify-center gap-2 mt-3">
@@ -304,7 +266,7 @@ const PortfolioSection = () => {
             <div className="relative">
               <div
                 ref={printingRef}
-                className="mt-4 flex gap-4 overflow-x-auto px-6 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+                className="mt-4 flex gap-4 overflow-x-auto px-0 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
                 role="list"
               >
                 {printingPortfolio.map((item) => (
@@ -314,42 +276,7 @@ const PortfolioSection = () => {
                 ))}
               </div>
 
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 md:hidden">
-                <button
-                  aria-label="Previous"
-                  onClick={() => {
-                    const el = printingRef.current;
-                    if (!el) return;
-                    const n = printingPortfolio.length;
-                    const child = el.querySelector('[data-card]') as HTMLElement | null;
-                    const gap = 16;
-                    const w = child ? child.clientWidth + gap : el.clientWidth;
-                    const idx = printingIndex;
-                    if (idx <= 0) return;
-                    el.scrollTo({ left: (idx - 1) * w, behavior: 'smooth' });
-                  }}
-                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
-                >
-                  ‹
-                </button>
-              </div>
 
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden">
-                <button
-                  aria-label="Next"
-                  onClick={() => {
-                    const el = printingRef.current;
-                    if (!el) return;
-                    const child = el.querySelector('[data-card]') as HTMLElement | null;
-                    const gap = 16;
-                    const w = child ? child.clientWidth + gap : el.clientWidth;
-                    el.scrollBy({ left: w, behavior: 'smooth' });
-                  }}
-                  className="bg-primary/80 text-cream p-2 rounded-full shadow-md"
-                >
-                  ›
-                </button>
-              </div>
 
               <div className="flex items-center justify-center gap-2 mt-3">
                 {printingPortfolio.map((_, i) => (
