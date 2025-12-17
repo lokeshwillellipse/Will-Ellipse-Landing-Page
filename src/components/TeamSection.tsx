@@ -12,12 +12,10 @@ const teamMembers = [
 const TeamSection = () => {
   return (
     <>
-      <section id="team" className="relative bg-secondary overflow-hidden">
+    <section id="team" className="relative bg-secondary overflow-hidden">
       {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
-        <span className="text-[20vw] font-bold text-primary/5 whitespace-nowrap">
-          Will & Ellipse
-        </span>
+      <div aria-hidden className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
+        <span className="text-[20vw] font-bold text-primary/5 whitespace-nowrap">Will &amp; Ellipse</span>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pt-20 pb-0">
