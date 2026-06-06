@@ -27,14 +27,6 @@ const services = [
 const ServicesSection = () => {
   return (
     <section id="services" className="relative py-24 bg-cream">
-      {/* Gradient at top of Services to blend from Hero into Services (services-heavy) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-0 right-0 top-0 h-56 md:h-80"
-        style={{
-          background: `linear-gradient(180deg, hsl(var(--secondary)) 0%, hsl(var(--cream)) 100%)`,
-        }}
-      />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}

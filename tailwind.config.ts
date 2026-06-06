@@ -26,6 +26,11 @@ export default {
         cream: "hsl(var(--cream))",
         "light-blue": "hsl(var(--light-blue))",
         golden: "hsl(var(--golden))",
+        cobalt: "hsl(var(--cobalt))",
+        gold: "hsl(var(--gold))",
+        "dark-blue": "hsl(var(--dark-blue))",
+        "warm-white": "hsl(var(--warm-white))",
+        "muted-text": "hsl(var(--muted-text))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
