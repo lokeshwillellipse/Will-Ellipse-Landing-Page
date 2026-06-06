@@ -33,7 +33,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-cream">
+    <section className="py-24 bg-[#EDE0C8]">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

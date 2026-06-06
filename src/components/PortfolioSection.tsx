@@ -160,7 +160,7 @@ const PortfolioSection = () => {
   }, []);
   return (
     
-    <section id="portfolio" className="relative py-24 bg-cream">
+    <section id="portfolio" className="relative py-24 bg-[#F2E8D5]">
 
       <div className="container mx-auto px-6 relative z-10">
           {/* CAD Design Portfolio */}

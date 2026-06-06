@@ -26,7 +26,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-24 bg-cream">
+    <section id="services" className="relative py-24 bg-[#F2E8D5]">
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
