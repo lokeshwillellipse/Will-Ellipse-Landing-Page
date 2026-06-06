@@ -9,41 +9,56 @@
 
 @layer base {
   :root {
-    --background: 43 60% 88%;
-    --foreground: 210 48% 13%;
+    /* Will & Ellipse — Core palette
+       Deep Navy   #0A1628 — main dark background
+       Dark Blue   #1C3A7A — alternate dark sections
+       Cobalt Blue #1C4ED8 — primary buttons / links / highlights
+       Warm Gold   #D4A017 — CTAs, accent borders, hover underlines
+       Warm White  #F8F6F0 — light section backgrounds, card surfaces
+       Muted       #CBD5E1 — body text on dark, subtitles
+    */
+    --background: 45 33% 96%;
+    --foreground: 215 62% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 48% 13%;
+    --card: 45 33% 96%;
+    --card-foreground: 215 62% 10%;
 
-    --popover: 210 48% 13%;
-    --popover-foreground: 43 60% 88%;
+    --popover: 215 62% 10%;
+    --popover-foreground: 45 33% 96%;
 
-    --primary: 210 48% 13%;
-    --primary-foreground: 43 60% 88%;
+    --primary: 215 62% 10%;
+    --primary-foreground: 45 33% 96%;
 
-    --secondary: 222 100% 95%;
-    --secondary-foreground: 210 48% 13%;
+    --secondary: 45 33% 96%;
+    --secondary-foreground: 215 62% 10%;
 
-    --muted: 40 57% 77%;
-    --muted-foreground: 210 30% 30%;
+    --muted: 213 27% 84%;
+    --muted-foreground: 215 25% 30%;
 
-    --accent: 43 60% 88%;
-    --accent-foreground: 210 48% 13%;
+    --accent: 224 76% 48%;
+    --accent-foreground: 45 33% 96%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 45 33% 96%;
 
-    --border: 210 30% 25%;
-    --input: 210 30% 80%;
-    --ring: 210 48% 13%;
+    --border: 215 25% 80%;
+    --input: 215 25% 80%;
+    --ring: 224 76% 48%;
 
     --radius: 0.75rem;
 
-    /* Custom colors */
-    --navy: 210 48% 13%;
-    --cream: 43 60% 88%;
-    --light-blue: 222 100% 95%;
-    --golden: 40 57% 77%;
+    /* Custom brand tokens */
+    --navy: 215 62% 10%;
+    --dark-blue: 220 62% 30%;
+    --cobalt: 224 76% 48%;
+    --gold: 43 81% 46%;
+    --warm-white: 45 33% 96%;
+    --muted-text: 213 27% 84%;
+
+    /* Legacy aliases (kept so existing class names still resolve to the new palette) */
+    --cream: 45 33% 96%;
+    --light-blue: 220 62% 30%;
+    --golden: 43 81% 46%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -115,10 +130,7 @@
 
 @layer utilities {
   .text-gradient {
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--muted-foreground)));
+    color: hsl(var(--primary));
   }
   
   .animate-float {
