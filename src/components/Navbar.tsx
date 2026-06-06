@@ -199,7 +199,7 @@ const Navbar = () => {
             {/* CTA Button - Desktop */}
             <a
               href="#contact"
-              className="hidden sm:block bg-cream text-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-200 hover:bg-cream/90 hover:text-slate-900"
+              className="hidden sm:block bg-[#F5EDDA] text-[#0A1628] border border-[#D4A017] px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-200 hover:bg-[#EDE0C8]"
             >
               Get a Quote
             </a>
@@ -283,7 +283,7 @@ const Navbar = () => {
             <a
               href="#contact"
               onClick={closeMobileMenu}
-              className="block bg-cream text-primary px-4 py-3 rounded-xl text-sm font-semibold text-center mt-4"
+              className="block bg-[#F5EDDA] text-[#0A1628] border border-[#D4A017] px-4 py-3 rounded-xl text-sm font-semibold text-center mt-4"
             >
               Get a Quote
             </a>
