@@ -6,47 +6,46 @@ const Footer = () => {
 
   return (
     <footer className="bg-cream px-4 sm:px-6 lg:px-8 pt-4">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 rounded-t-[2.5rem] bg-golden/80 backdrop-blur-2xl border border-white/30 shadow-[0_-12px_40px_rgba(18,34,49,0.18)] relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-primary/5" />
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 rounded-t-[2.5rem] bg-primary relative overflow-hidden">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <div>
-            <h3 className="text-2xl font-bold text-primary mb-2">
+            <h3 className="text-2xl font-bold text-cream mb-2">
               Will & Ellipse
             </h3>
-            <p className="text-primary/60 text-sm mb-6">
+            <p className="text-cream/60 text-sm mb-6">
               Curves that connect and inspire
             </p>
-            <p className="text-primary/60 text-sm leading-relaxed">
+            <p className="text-cream/60 text-sm leading-relaxed">
               Pioneering drone technology and precision manufacturing. From custom-built drones to CAD design — engineering excellence that takes your vision to new heights.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-primary mb-6">Quick Links</h4>
+            <h4 className="font-bold text-cream mb-6">Quick Links</h4>
             <nav className="space-y-3">
               <a
                 href="#services"
-                className="block text-primary/70 hover:text-primary transition-colors"
+                className="block text-cream/70 hover:text-cream transition-colors"
               >
                 Services
               </a>
               <a
                 href="#portfolio"
-                className="block text-primary/70 hover:text-primary transition-colors"
+                className="block text-cream/70 hover:text-cream transition-colors"
               >
                 About
               </a>
               <a
                 href="#team"
-                className="block text-primary/70 hover:text-primary transition-colors"
+                className="block text-cream/70 hover:text-cream transition-colors"
               >
                 Team
               </a>
               <a
                 href="#contact"
-                className="block text-primary/70 hover:text-primary transition-colors"
+                className="block text-cream/70 hover:text-cream transition-colors"
               >
                 Contact Us
               </a>
@@ -55,58 +54,58 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="font-bold text-primary mb-6">Follow Us</h4>
+            <h4 className="font-bold text-cream mb-6">Follow Us</h4>
             <div className="flex items-center gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-cream transition-all duration-300 group"
+                className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-cream hover:text-primary transition-all duration-300 group"
               >
-                <Facebook className="w-5 h-5 text-primary group-hover:text-cream" />
+                <Facebook className="w-5 h-5 text-cream group-hover:text-primary" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-cream transition-all duration-300 group"
+                className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-cream hover:text-primary transition-all duration-300 group"
               >
-                <Instagram className="w-5 h-5 text-primary group-hover:text-cream" />
+                <Instagram className="w-5 h-5 text-cream group-hover:text-primary" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-cream transition-all duration-300 group"
+                className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-cream hover:text-primary transition-all duration-300 group"
               >
-                <Twitter className="w-5 h-5 text-primary group-hover:text-cream" />
+                <Twitter className="w-5 h-5 text-cream group-hover:text-primary" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-cream transition-all duration-300 group"
+                className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-cream hover:text-primary transition-all duration-300 group"
               >
-                <Linkedin className="w-5 h-5 text-primary group-hover:text-cream" />
+                <Linkedin className="w-5 h-5 text-cream group-hover:text-primary" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-primary/20 pt-8">
+        <div className="border-t border-cream/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-primary/60 text-sm">
+            <p className="text-cream/60 text-sm">
               © {currentYear} Will & Ellipse Enterprises LLP. All rights reserved
             </p>
             <div className="flex items-center gap-6">
               <a
                 href="#"
-                className="text-primary/60 hover:text-primary text-sm transition-colors"
+                className="text-cream/60 hover:text-cream text-sm transition-colors"
               >
                 Privacy Policy
               </a>
               <a
                 href="#"
-                className="text-primary/60 hover:text-primary text-sm transition-colors"
+                className="text-cream/60 hover:text-cream text-sm transition-colors"
               >
                 Terms of Service
               </a>
               <a
                 href="#"
-                className="text-primary/60 hover:text-primary text-sm transition-colors"
+                className="text-cream/60 hover:text-cream text-sm transition-colors"
               >
                 Cookies
               </a>
