@@ -26,11 +26,8 @@ const printingPortfolio: PortfolioItem[] = [
 
 const PortfolioCard = ({ item, type }: { item: PortfolioItem; type: string }) => (
   <div className="group relative bg-slate-50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full min-h-[180px]">
-    {/* Metallic gradient overlay
-    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" /> */}
-    
     {/* Content overlay on hover */}
-    <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div className="absolute inset-0 flex flex-col justify-end p-5 bg-primary/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <span className="text-cream/80 text-xs font-medium">{item.category}</span>
       <h4 className="text-cream text-base font-bold">{item.title}</h4>
     </div>
@@ -164,13 +161,6 @@ const PortfolioSection = () => {
   return (
     
     <section id="portfolio" className="relative py-24 bg-cream">
-      {/* Subtle gradient at bottom of Portfolio to hint the next section */}
-      <div
-        className="pointer-events-none absolute left-0 right-0 bottom-0 h-36 md:h-56"
-        style={{
-          background: `linear-gradient(0deg, hsl(var(--secondary)) 0%, hsla(var(--secondary) / 0) 100%)`,
-        }}
-      />
 
       <div className="container mx-auto px-6 relative z-10">
           {/* CAD Design Portfolio */}

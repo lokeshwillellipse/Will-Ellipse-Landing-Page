@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-secondary overflow-hidden flex items-center justify-center pt-24">
+    <section className="relative min-h-screen bg-primary overflow-hidden flex items-center justify-center pt-24">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Circuit Lines */}
