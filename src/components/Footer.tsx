@@ -5,8 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-golden py-16">
-      <div className="container mx-auto px-6">
+    <footer className="bg-cream px-4 sm:px-6 lg:px-8 pb-6 pt-4">
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 rounded-[2.5rem] bg-golden/40 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(18,34,49,0.08)] relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/10" />
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <div>
