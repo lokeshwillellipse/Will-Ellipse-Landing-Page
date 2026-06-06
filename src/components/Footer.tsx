@@ -6,8 +6,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-cream px-4 sm:px-6 lg:px-8 pt-4">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 rounded-t-[2.5rem] bg-navy/90 backdrop-blur-xl border border-white/10 shadow-[0_-8px_32px_rgba(18,34,49,0.15)] relative overflow-hidden text-cream">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/[0.02]" />
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 rounded-t-[2.5rem] bg-golden/80 backdrop-blur-2xl border border-white/30 shadow-[0_-12px_40px_rgba(18,34,49,0.18)] relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-primary/5" />
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <div>
